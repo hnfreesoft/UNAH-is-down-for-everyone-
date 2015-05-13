@@ -1,0 +1,74 @@
+body {
+    background-color: #000000;
+    color: #ffffff;
+}
+#middle{
+margin:0 215px 0 215px;
+
+border:4px solid grey;
+height:100%;
+text-align: center;
+}
+#footer{
+border:4px solid grey;
+height:20px;
+float:center;
+text-align: center;
+}
+#left{
+
+border:4px solid #00FF00;
+height:100%;
+width:200px;
+float:left;
+}
+#right{
+width:200px;
+float:right;
+border:4px solid #99FF00;
+height:100%;
+}
+.btn-style{
+border : solid 2px #ffffff;
+border-radius : 3px;
+moz-border-radius : 3px;
+font-size : 20px;
+color : #ffffff;
+padding : 1px 17px;
+background-color : #0a66c9;
+
+}
+.divbotones {
+height:35px;
+margin:0 auto;
+width: 500px;
+}
+.elboton {
+background-color: #CCC;
+border: 1px solid #EEE;
+border-radius: 3px;
+color:#555;
+cursor:pointer;
+padding: 4px 0 5px;
+text-align:center;
+width:200px;
+}
+.elboton:hover {
+background-color: #D9D9D9;
+border: 1px solid #FFF;
+color: #333;
+}
+.sinodemos {
+background:#355C33;
+border:1px solid #548954;
+border-radius:3px;
+color:#79AF72;
+height:400px;
+margin-bottom:10px;
+padding:9px 10px 0;
+text-shadow:1px 1px #21341D;
+}
+#demoFADE {
+opacity:0;
+filter:alpha(opacity=0);
+}
