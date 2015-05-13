@@ -52,11 +52,12 @@ function checkOnline($domain) {
 
 
 function get_http_response_code($domain1) {
-  $headers = get_headers($domain1);
-  return substr($headers[0], 9, 3);
+	$headers = @get_headers($domain1);
+	return substr($headers[0], 9, 3);
+
 }
 
-$get_http_response_code = get_http_response_code($domain1);
+if (get_http_response_code($domain1)){
 
 if ($get_http_response_code == 500 ) {
   $error = "<font color='red'>500 <h4>Internal Server Error</h4></font>";
@@ -70,7 +71,7 @@ if ($get_http_response_code == 502 ) {
 if ($get_http_response_code == 503 ) {
   $error = "</font>503 <h4>Service Unavailable</h4></font>";
 }
-
+}
 
 
 ?>
@@ -134,6 +135,8 @@ if ($error){
 	echo "<h2>ERROR</h2>". $error;
 }elseif(checkOnline($domain1)){
 	echo "<font color='green'><h2>It's just you</h2></font> ";
+}elseif (!filter_var($domain1, FILTER_VALIDATE_URL) === false){
+	print "<font color='red'><h2>URL MAL</h2></font> ";
 }else{
 	print "<font color='red'><h2>IS DOWN</h2></font> ";
 }
