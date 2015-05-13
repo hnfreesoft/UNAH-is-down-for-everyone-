@@ -83,6 +83,14 @@ if ($get_http_response_code == 503 ) {
 	<link rel="stylesheet" type="text/css" href="css.css" />
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 1.22" />
+	<meta name="description" content="UNAH is Down for everyone? es una pagina creada para verificar el estatus de las paginas de la UNAH">
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<meta property="og:title" content="UNAH is Down for everyone?"/>
+	<meta property="og:url" content="http://unahisdownforeveryone.tk/"/>
+	<meta property="og:site_name" content="UNAH is Down for everyone?"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:description" content="UNAH is Down for everyone? es una pagina creada para verificar el estatus de las paginas de la UNAH"/>
+
 <script>
 var fadeEffect=function() {
   return{
