@@ -140,7 +140,7 @@ if ($error){
 
 <div id="demoFADE" class="sinodemos" style="background: #00000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"> <iframe height="100%" width="100%" src="<?php echo $domain1; ?>"></iframe> </div>
 
-<div id="footer"><a href="GPL.txt">Copyright (C) 2015 Josue Ramos</a></div>
+<div id="footer"><a href="GPL.txt">Copyright (C) 2015 Josue Ramos</a> | <a href="https://github.com/hnfreesoft/UNAH-is-down-for-everyone-">GITHUB</a></div>
 </body>
 
 </html>
