@@ -35,8 +35,8 @@ if (substr($domain1, 0, 4) === 'http'){
 	$domain1 = "http://".$domain1;
 }
 
-function checkOnline($domain) {
-   $curlInit = curl_init($domain);
+function checkOnline($domain1) {
+   $curlInit = curl_init($domain1);
    curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT,10);
    curl_setopt($curlInit,CURLOPT_HEADER,true);
    curl_setopt($curlInit,CURLOPT_NOBODY,true);
@@ -135,10 +135,10 @@ if ($error){
 	echo "<h2>ERROR</h2>". $error;
 }elseif(checkOnline($domain1)){
 	echo "<font color='green'><h2>It's just you</h2></font> ";
-}elseif (!filter_var($domain1, FILTER_VALIDATE_URL) === false){
-	print "<font color='red'><h2>URL MAL</h2></font> ";
+}elseif (!filter_var($domain1, FILTER_VALIDATE_URL) === true){
+	print "<font color='red'><h2>This is not a URL of InterWeb</h2></font> ";
 }else{
-	print "<font color='red'><h2>IS DOWN</h2></font> ";
+	print "<font color='red'><h2>It's not just you! ".$domain."IS DOWN!</h2></font> ";
 }
 
 
