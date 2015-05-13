@@ -22,6 +22,12 @@
  * 
  * 
  */
+ 
+if ($_GET['nf']){
+	$nf = $_GET['nf'];
+}else{
+	$nf = False;
+} 
 
 if ($_GET['url']){
 	$domain1 = $_GET['url'];
@@ -60,16 +66,16 @@ function get_http_response_code($domain1) {
 $get_http_response_code = get_http_response_code($domain1);
 
 if ($get_http_response_code == 500 ) {
-  $error = "<font color='red'>500 <h4>Internal Server Error</h4></font>";
+  $error = "<h2>ERROR</h2>" . "<font color='red'>500 <h4>Internal Server Error</h4></font>";
 }
 if ($get_http_response_code == 404 ) {
-  $error = "<font color='red'>404 <h4>Not Found</h4></font>";
+  $error = "<h2>ERROR</h2>". "<font color='red'>404 <h4>Not Found</h4></font>";
 }
 if ($get_http_response_code == 502 ) {
-  $error = "<font color='red'>502 <h4>Bad Gateway</h4></font>";
+  $error = "<h2>ERROR</h2>". "<font color='red'>502 <h4>Bad Gateway</h4></font>";
 }
 if ($get_http_response_code == 503 ) {
-  $error = "</font>503 <h4>Service Unavailable</h4></font>";
+  $error = "<h2>ERROR</h2>". "</font>503 <h4>Service Unavailable</h4></font>";
 }
 
 
@@ -80,8 +86,39 @@ if ($get_http_response_code == 503 ) {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
+
+<script>function notifyMe() {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  // Let's check whether notification permissions have alredy been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    var notification = new Notification("The page <?php echo $domain1; ?> is working now!");
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+     
+      }
+    });
+  }
+
+
+  // At last, if the user has denied notifications, and you 
+  // want to be respectful there is no need to bother them any more.
+}</script>
+
 	<title>UNAH is Down for everyone?</title>
 	<link rel="stylesheet" type="text/css" href="css.css" />
+	<meta name="viewport" content="width=1000, height=1000, user-scalable=yes,
+initial-scale=0.5, maximum-scale=10.0, minimum-scale=0.4" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 1.22" />
 	<meta name="description" content="UNAH is Down for everyone? es una pagina creada para verificar el estatus de las paginas de la UNAH">
@@ -132,17 +169,34 @@ var fadeEffect=function() {
 
 <?php
 if ($error){
-	echo "<h2>ERROR</h2>". $error;
-}elseif(checkOnline($domain1)){
-	echo "<font color='green'><h2>It's just you</h2></font> ";
-}elseif (!filter_var($domain1, FILTER_VALIDATE_URL) === true){
-	print "<font color='red'><h2>This is not a URL of InterWeb</h2></font> ";
-}else{
+	echo $error;
+	print "Retry in 5 seconds - do not close the screen, we'll let you know When the website work again";
+	header('Refresh: 10; url=index.php?url='.$domain1.'&nf=True');
+	die();
+}
+if (!filter_var($domain1, FILTER_VALIDATE_URL) === false) {
+    if(checkOnline($domain1)){
+	if ($nf == True){
+		print "<script>notifyMe();</script>";
+		echo "<font color='green'><h2>WORK AGAIN!</h2></font> ";
+	}else{
+		echo "<font color='green'><h2>It's just you</h2></font> ";
+	}
+}
+else{
 	print "<font color='red'><h2>It's not just you! ".$domain."IS DOWN!</h2></font> ";
+	print "Retry in 5 seconds - do not close the screen, we'll let you know When the website work again";
+	header('Refresh: 10; url=index.php?url='.$domain1.'&nf=True');
+	die();
+}
+} else {
+    print "<font color='red'><h2> ".$domain."Is Not a Valid URL</h2></font> ";
 }
 
 
+
 ?>
+
 <div class="divbotones">
   <div class="elboton" onclick="fadeEffect.init('demoFADE', 1)" style="float:left">Iframe in</div>
   <div class="elboton" onclick="fadeEffect.init('demoFADE',0)" style="float:right">Iframe Out</div>
