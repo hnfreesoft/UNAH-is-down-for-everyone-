@@ -57,7 +57,7 @@ function get_http_response_code($domain1) {
 
 }
 
-if (get_http_response_code($domain1)){
+$get_http_response_code = get_http_response_code($domain1);
 
 if ($get_http_response_code == 500 ) {
   $error = "<font color='red'>500 <h4>Internal Server Error</h4></font>";
@@ -71,7 +71,7 @@ if ($get_http_response_code == 502 ) {
 if ($get_http_response_code == 503 ) {
   $error = "</font>503 <h4>Service Unavailable</h4></font>";
 }
-}
+
 
 
 ?>
